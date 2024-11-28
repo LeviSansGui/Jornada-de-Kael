@@ -1,0 +1,96 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://2.fases/fase_I/images/heart-pixel-art-animation-isolated-260nw-1873244467.webp" type="Texture2D" id=1]
+[ext_resource path="res://5.recursos_gerais/script_vida.gd" type="Script" id=2]
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 8.06226
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("textura:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
+"update": 0,
+"values": [ Rect2( 77, 16, 41, 37 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "coletado"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/path = NodePath("textura:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PackedFloat32Array( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 12, 146, 41, 37 ), Rect2( 73, 142, 49, 45 ), Rect2( 134, 138, 53, 49 ), Rect2( 199, 138, 53, 53 ), Rect2( 264, 138, 53, 53 ), Rect2( 329, 138, 53, 53 ), Rect2( 394, 134, 61, 61 ), Rect2( 459, 134, 61, 61 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "parado"
+length = 0.7
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("textura:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PackedFloat32Array( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 12, 16, 41, 37 ), Rect2( 77, 16, 41, 37 ), Rect2( 142, 16, 41, 37 ), Rect2( 211, 16, 33, 37 ), Rect2( 276, 16, 33, 37 ), Rect2( 341, 16, 33, 37 ), Rect2( 402, 16, 41, 37 ), Rect2( 467, 16, 41, 37 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "parado_2"
+length = 0.7
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("textura:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PackedFloat32Array( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 28, 98, 8, 8 ), Rect2( 89, 93, 17, 17 ), Rect2( 150, 89, 25, 21 ), Rect2( 211, 85, 33, 29 ), Rect2( 272, 81, 41, 37 ), Rect2( 333, 77, 49, 45 ), Rect2( 398, 81, 49, 41 ), Rect2( 467, 81, 41, 37 ) ]
+}
+
+[node name="vida" type="Area2D"]
+collision_layer = 4
+script = ExtResource( 2 )
+
+[node name="textura" type="Sprite2D" parent="."]
+scale = Vector2( 0.375, 0.375 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 77, 16, 41, 37 )
+
+[node name="colisao" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -1 )
+shape = SubResource( 4 )
+
+[node name="anim" type="AnimationPlayer" parent="."]
+autoplay = "parado_2"
+anims/RESET = SubResource( 1 )
+anims/coletado = SubResource( 5 )
+anims/parado = SubResource( 2 )
+anims/parado_2 = SubResource( 3 )
+
+[connection signal="body_entered" from="." to="." method="_on_vida_body_entered"]
+[connection signal="animation_finished" from="anim" to="." method="_on_anim_animation_finished"]
