@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://2.fases/fase_III/inimigos/image-removebg-preview - 2024-10-26T085555.726 (1).png" type="Texture2D" id=1]
+[ext_resource path="res://2.fases/fase_III/assets/chuva.gd" type="Script" id=2]
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 475, 131 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ SubResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 8.544
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2( 2, 2 )
+script = ExtResource( 2 )
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D"]
+position = Vector2( 16.4454, 49.042 )
+rotation = 4.71238
+scale = Vector2( 0.112804, 0.135072 )
+frames = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 17, 69 )
+shape = SubResource( 3 )
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="destruir_per"]

@@ -1,21 +1,16 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://2.fases/fase_I/inimigos/assets/Karasu_tengu/Dead.png" type="Texture2D" id=1]
-[ext_resource path="res://2.fases/fase_I/inimigos/assets/Karasu_tengu/Hurt.png" type="Texture2D" id=2]
-[ext_resource path="res://2.fases/fase_I/inimigos/assets/Karasu_tengu/Idle.png" type="Texture2D" id=3]
-[ext_resource path="res://2.fases/fase_I/inimigos/scripts/script_inimigo_atira.gd" type="Script" id=4]
-[ext_resource path="res://2.fases/fase_I/inimigos/assets/Karasu_tengu/Walk.png" type="Texture2D" id=5]
-[ext_resource path="res://2.fases/fase_I/inimigos/assets/Karasu_tengu/Attack_1.png" type="Texture2D" id=6]
+[ext_resource path="res://2.fases/fase_III/inimigos/script_inimigo.gd" type="Script" id=1]
+[ext_resource path="res://2.fases/fase_III/inimigos/VILÃO.png" type="Texture2D" id=2]
+[ext_resource path="res://2.fases/fase_III/assets/MusicasSons/InimigoMorrendo.wav" type="AudioStream" id=24]
 
-[sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 9.625, 32.625 )
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 31, 87 )
 
-[sub_resource type="Animation" id=2]
-resource_name = "andando"
-length = 0.8
-loop = true
+[sub_resource type="Animation" id=7]
+length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("textura:texture")
+tracks/0/path = NodePath("Sprite2D:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -23,142 +18,82 @@ tracks/0/enabled = true
 tracks/0/keys = {
 "times": PackedFloat32Array( 0 ),
 "transitions": PackedFloat32Array( 1 ),
-"update": 1,
-"values": [ ExtResource( 5 ) ]
+"update": 0,
+"values": [ null ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("textura:region_rect")
+tracks/1/path = NodePath("Sprite2D:region_rect")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PackedFloat32Array( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8 ),
-"transitions": PackedFloat32Array( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ Rect2( 22, 40, 57, 88 ), Rect2( 153, 39, 58, 89 ), Rect2( 275, 38, 65, 90 ), Rect2( 403, 39, 70, 89 ), Rect2( 530, 40, 61, 88 ), Rect2( 659, 39, 60, 89 ), Rect2( 787, 38, 64, 90 ), Rect2( 917, 39, 70, 89 ), Rect2( 693.25, 39.25, 66.75, 88.75 ) ]
-}
-
-[sub_resource type="Animation" id=9]
-resource_name = "ataque_1"
-length = 1.2
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("textura:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
 "times": PackedFloat32Array( 0 ),
 "transitions": PackedFloat32Array( 1 ),
-"update": 1,
-"values": [ ExtResource( 6 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("textura:region_rect")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PackedFloat32Array( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.7, 0.8, 0.9, 1, 1.1, 1.2 ),
-"transitions": PackedFloat32Array( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ Rect2( 8, 41, 75, 87 ), Rect2( 265, 41, 75, 87 ), Rect2( 141, 41, 75, 87 ), Rect2( 526, 41, 113, 87 ), Rect2( 655, 41, 75, 87 ), Rect2( 8, 41, 75, 87 ), Rect2( 8, 41, 75, 87 ), Rect2( 265, 41, 75, 87 ), Rect2( 141, 41, 75, 87 ), Rect2( 526, 41, 113, 87 ), Rect2( 655, 41, 75, 87 ), Rect2( 265, 41, 75, 87 ) ]
-}
-tracks/2/type = "method"
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PackedFloat32Array( 0.4, 1.1 ),
-"transitions": PackedFloat32Array( 1, 1 ),
-"values": [ {
-"args": [  ],
-"method": "shoot"
-}, {
-"args": [  ],
-"method": "shoot"
-} ]
+"update": 0,
+"values": [ Rect2( 100, 210, 70, 80 ) ]
 }
 
 [sub_resource type="Animation" id=3]
-resource_name = "dano"
-length = 0.2
+resource_name = "andando"
+loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("textura:texture")
+tracks/0/path = NodePath("Sprite2D:region_rect")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
-"update": 1,
-"values": [ ExtResource( 2 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("textura:region_rect")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PackedFloat32Array( 0, 0.1, 0.2 ),
+"times": PackedFloat32Array( 0, 0.2, 1 ),
 "transitions": PackedFloat32Array( 1, 1, 1 ),
 "update": 1,
-"values": [ Rect2( 20, 41, 74, 87 ), Rect2( 152, 41, 74, 87 ), Rect2( 276, 41, 74, 87 ) ]
-}
-
-[sub_resource type="Animation" id=4]
-resource_name = "morrendo"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/path = NodePath("textura:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PackedFloat32Array( 0 ),
-"transitions": PackedFloat32Array( 1 ),
-"update": 1,
-"values": [ ExtResource( 1 ) ]
+"values": [ Rect2( 20, 210, 70, 80 ), Rect2( 100, 210, 70, 80 ), Rect2( 190, 210, 80, 80 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("textura:region_rect")
+tracks/1/path = NodePath("Sprite2D:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PackedFloat32Array( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
-"transitions": PackedFloat32Array( 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ Rect2( 20, 41, 74, 87 ), Rect2( 152, 41, 74, 87 ), Rect2( 276, 41, 74, 87 ), Rect2( 404, 41, 74, 87 ), Rect2( 532, 90, 96.265, 38 ), Rect2( 650, 100, 110, 30 ) ]
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "fogo"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PackedFloat32Array( 0, 0.5 ),
+"transitions": PackedFloat32Array( 1, 1 ),
+"update": 0,
+"values": [ Rect2( 100, 210, 70, 80 ), Rect2( 195, 217, 73, 71 ) ]
 }
 
 [sub_resource type="Animation" id=5]
-resource_name = "parado"
-length = 0.5
-loop = true
+resource_name = "morrendo"
+length = 1.8
 tracks/0/type = "value"
-tracks/0/path = NodePath("textura:region_rect")
+tracks/0/path = NodePath("Sprite2D:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PackedFloat32Array( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
-"transitions": PackedFloat32Array( 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ Rect2( 20, 41, 74, 87 ), Rect2( 152, 41, 74, 87 ), Rect2( 276, 41, 74, 87 ), Rect2( 404, 41, 74, 87 ), Rect2( 532, 41, 74, 87 ), Rect2( 670, 40, 70, 90 ) ]
+"times": PackedFloat32Array( 0, 1.1, 1.8 ),
+"transitions": PackedFloat32Array( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("textura:texture")
+tracks/1/path = NodePath("Area2D/CollisionShape2D:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -167,58 +102,58 @@ tracks/1/keys = {
 "times": PackedFloat32Array( 0 ),
 "transitions": PackedFloat32Array( 1 ),
 "update": 1,
-"values": [ ExtResource( 3 ) ]
+"values": [ true ]
 }
 
-[sub_resource type="CapsuleShape2D" id=12]
-height = 292.0
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 13.5, 31 )
 
-[sub_resource type="RectangleShape2D" id=13]
-extents = Vector2( 11, 21.5 )
+[node name="Node2D" type="Node2D"]
+position = Vector2( 548, 305 )
 
-[node name="inimigo" type="CharacterBody2D"]
-position = Vector2( 129, 63 )
+[node name="inimigo" type="CharacterBody2D" parent="."]
 collision_layer = 2
-script = ExtResource( 4 )
+script = ExtResource( 1 )
 
-[node name="textura" type="Sprite2D" parent="."]
-self_modulate = Color( 0.992157, 0.980392, 0.980392, 1 )
-scale = Vector2( 0.525862, 0.525862 )
-texture = ExtResource( 6 )
+[node name="Sprite2D" type="Sprite2D" parent="inimigo"]
+position = Vector2( -43.1531, 35.545 )
+scale = Vector2( 0.575802, 0.882136 )
+texture = ExtResource( 2 )
 flip_h = true
 region_enabled = true
-region_rect = Rect2( 655, 41, 75, 87 )
+region_rect = Rect2( 100, 210, 70, 80 )
 
-[node name="colisao" type="CollisionShape2D" parent="."]
+[node name="Direita" type="Marker2D" parent="inimigo/Sprite2D"]
+position = Vector2( -29.2581, -15.3547 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="inimigo"]
 visible = false
-position = Vector2( -16, 10 )
-shape = SubResource( 7 )
+modulate = Color( 0.831373, 0, 0.678431, 1 )
+position = Vector2( -3, -23 )
+shape = SubResource( 1 )
 
-[node name="anim" type="AnimationPlayer" parent="."]
-autoplay = "parado"
-anims/andando = SubResource( 2 )
-anims/ataque_1 = SubResource( 9 )
-anims/dano = SubResource( 3 )
-anims/morrendo = SubResource( 4 )
-anims/parado = SubResource( 5 )
+[node name="AnimationPlayer" type="AnimationPlayer" parent="inimigo"]
+autoplay = "andando"
+anims/RESET = SubResource( 7 )
+anims/andando = SubResource( 3 )
+anims/fogo = SubResource( 8 )
+anims/morrendo = SubResource( 5 )
 
-[node name="tiro" type="Marker2D" parent="."]
-position = Vector2( -61, 1 )
-
-[node name="detector_personagem" type="Area2D" parent="."]
-collision_layer = 0
-
-[node name="colisao" type="CollisionShape2D" parent="detector_personagem"]
-rotation = 1.5708
-shape = SubResource( 12 )
-
-[node name="sofreu_dano" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="inimigo"]
+position = Vector2( -1, -2 )
 collision_layer = 2
 
-[node name="colisao" type="CollisionShape2D" parent="sofreu_dano"]
-position = Vector2( -18, 1 )
-shape = SubResource( 13 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="inimigo/Area2D"]
+position = Vector2( -42, 36 )
+shape = SubResource( 6 )
+disabled = true
 
-[connection signal="body_entered" from="detector_personagem" to="." method="_on_detector_personagem_body_entered"]
-[connection signal="body_exited" from="detector_personagem" to="." method="_on_detector_personagem_body_exited"]
-[connection signal="area_entered" from="sofreu_dano" to="." method="_on_sofreu_dano_area_entered"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="inimigo"]
+stream = ExtResource( 24 )
+
+[node name="Timer" type="Timer" parent="inimigo"]
+wait_time = 2.0
+
+[connection signal="animation_finished" from="inimigo/AnimationPlayer" to="inimigo" method="eliminar_inimigo"]
+[connection signal="body_entered" from="inimigo/Area2D" to="inimigo" method="causar_dano"]
+[connection signal="timeout" from="inimigo/Timer" to="inimigo" method="dispara"]

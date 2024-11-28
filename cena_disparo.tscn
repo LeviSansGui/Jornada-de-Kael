@@ -1,0 +1,70 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://2.fases/fase_III/assets/disparo.png" type="Texture2D" id=1]
+[ext_resource path="res://2.fases/fase_III/scripts/script_disparo.gd" type="Script" id=2]
+[ext_resource path="res://2.fases/fase_III/assets/MusicasSons/Disparo.wav" type="AudioStream" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 12.0416
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
+"update": 0,
+"values": [ Rect2( 80, 292, 224, 145 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "voando"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PackedFloat32Array( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 90, 50, 214, 145 ), Rect2( 80, 292, 224, 145 ), Rect2( 80, 528, 224, 147 ), Rect2( 69, 752, 235, 161 ), Rect2( 62, 1011, 242, 136 ), Rect2( 58, 1247, 246, 145 ), Rect2( 73, 1486, 231, 145 ), Rect2( 69, 1723, 236, 145 ) ]
+}
+
+[node name="disparo" type="Node2D"]
+position = Vector2( 493, 274 )
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 128
+collision_mask = 2
+script = ExtResource( 2 )
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+position = Vector2( 1, 2 )
+scale = Vector2( 0.165517, 0.165517 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 80, 292, 224, 145 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 12, 2 )
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Area2D"]
+autoplay = "voando"
+anims/RESET = SubResource( 2 )
+anims/voando = SubResource( 3 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Area2D"]
+stream = ExtResource( 3 )
+autoplay = true
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="destruir_inimigo"]

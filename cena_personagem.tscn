@@ -1,0 +1,149 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://2.fases/fase_III/assets/iron_man.png" type="Texture2D" id=1]
+[ext_resource path="res://2.fases/fase_III/scripts/script_personagem.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 14.5, 41.9359 )
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+
+[sub_resource type="Animation" id=3]
+resource_name = "andando"
+length = 1.2
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PackedFloat32Array( 0, 0.2, 0.4, 0.6, 0.8, 1 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 2, 97, 34, 83 ), Rect2( 37, 96, 29, 83 ), Rect2( 71, 97, 40, 83 ), Rect2( 115, 97, 33, 83 ), Rect2( 152, 96, 23, 84 ), Rect2( 178, 97, 40, 83 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "atirando"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PackedFloat32Array( 0, 0.1, 0.2, 0.3 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 3, 514, 44, 86 ), Rect2( 55, 513, 41, 87 ), Rect2( 104, 518, 46, 82 ), Rect2( 159, 530, 57, 70 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "parado"
+length = 0.6
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PackedFloat32Array( 0, 0.2, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 22, 3, 39, 86 ), Rect2( 68, 2, 40, 87 ), Rect2( 114, 1, 40, 88 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "pulando"
+length = 1.8
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PackedFloat32Array( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 4, 186, 39, 96 ), Rect2( 48, 186, 39, 91 ), Rect2( 92, 186, 39, 85 ), Rect2( 137, 190, 31, 77 ), Rect2( 175, 194, 35, 62 ), Rect2( 223, 190, 31, 77 ), Rect2( 260, 185, 35, 92 ), Rect2( 296, 185, 35, 97 ), Rect2( 340, 226, 43, 56 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 0.001
+
+[sub_resource type="Animation" id=8]
+resource_name = "dano"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PackedFloat32Array( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PackedFloat32Array( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false, true, false, true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PackedFloat32Array( 0, 0.2, 0.4 ),
+"transitions": PackedFloat32Array( 1, 1, 1 ),
+"update": 1,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="Player" type="Node2D"]
+position = Vector2( 533, 330 )
+
+[node name="Personagem" type="CharacterBody2D" parent="."]
+collision_layer = 2
+script = ExtResource( 2 )
+
+[node name="Sprite2D" type="Sprite2D" parent="Personagem"]
+position = Vector2( 0.499985, -47.4103 )
+scale = Vector2( 0.897435, 0.897435 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 22, 3, 39, 86 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Personagem"]
+position = Vector2( 1.5, -43.7565 )
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Personagem"]
+anims/RESET = SubResource( 2 )
+anims/andando = SubResource( 3 )
+anims/atirando = SubResource( 4 )
+anims/parado = SubResource( 5 )
+anims/pulando = SubResource( 6 )
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Personagem"]
+anims/RESET = SubResource( 7 )
+anims/dano = SubResource( 8 )
+
+[node name="Position2DEsq" type="Marker2D" parent="Personagem"]
+position = Vector2( -61, -56 )
+
+[node name="Position2DDir" type="Marker2D" parent="Personagem"]
+position = Vector2( 61, -56 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Personagem"]
+
+[connection signal="animation_finished" from="Personagem/AnimationPlayer" to="Personagem" method="disparar"]
