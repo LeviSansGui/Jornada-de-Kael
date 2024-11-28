@@ -1,0 +1,135 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Audio/perdeu.wav" type="AudioStream" id=1]
+[ext_resource path="res://5.recursos_gerais/fontes/Jersey25-Regular.ttf" type="FontFile" id=2]
+[ext_resource path="res://IMG_20241117_165820.png" type="Texture2D" id=3]
+[ext_resource path="res://4.fim_de_jogo/cenas/script_fim_de_jogo_3.gd" type="Script" id=4]
+
+[sub_resource type="FontFile" id=1]
+size = 23
+font_data = ExtResource( 2 )
+
+[sub_resource type="Animation" id=7]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
+"update": 0,
+"values": [ Vector2( 273.5, 0 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "revelar"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PackedFloat32Array( 0, 0.2 ),
+"transitions": PackedFloat32Array( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PackedFloat32Array( 0, 0.2 ),
+"transitions": PackedFloat32Array( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 273.5, 0 ), Vector2( 273.5, 182 ) ]
+}
+
+[sub_resource type="FontFile" id=2]
+spacing_top = 2
+spacing_bottom = 1
+extra_spacing_char = 2
+font_data = ExtResource( 2 )
+
+[sub_resource type="Animation" id=6]
+resource_name = "revelar"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PackedFloat32Array( 0, 0.2 ),
+"transitions": PackedFloat32Array( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="fim_de_jogo_fase3" type="CanvasLayer"]
+script = ExtResource( 4 )
+
+[node name="textura" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 1.0
+offset_bottom = 1.0
+color = Color( 0.0627451, 0.054902, 0.054902, 0.101961 )
+
+[node name="Img20241117165820" type="Sprite2D" parent="textura"]
+position = Vector2( 323.5, 201.5 )
+scale = Vector2( 0.302315, 0.140625 )
+texture = ExtResource( 3 )
+
+[node name="texto" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 273.5
+offset_right = 374.5
+offset_bottom = 24.0
+size_flags_vertical = 0
+theme_override_fonts/font = SubResource( 1 )
+text = "GAME OVER"
+align = 1
+
+[node name="anim" type="AnimationPlayer" parent="texto"]
+autoplay = "revelar"
+anims/RESET = SubResource( 7 )
+anims/revelar = SubResource( 4 )
+
+[node name="returnBtn" type="Button" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+anchor_left = 0.395062
+anchor_top = 0.536082
+anchor_right = 0.58642
+anchor_bottom = 0.670103
+offset_top = 24.0
+offset_bottom = 24.0
+theme_override_colors/font_color = Color( 1, 1, 1, 1 )
+theme_override_fonts/font = SubResource( 2 )
+text = "Return"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="anim" type="AnimationPlayer" parent="returnBtn"]
+autoplay = "revelar"
+anims/revelar = SubResource( 6 )
+
+[node name="audio_game_over" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+volume_db = -23.596
+autoplay = true
+
+[connection signal="pressed" from="returnBtn" to="." method="_on_returnBtn_pressed"]
