@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://2.fases/fase_I/scripts/fan_trap.gd" type="Script" id=2]
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [  ],
+"loop": false,
+"name": "turned_on",
+"speed": 5.03
+} ]
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 11.5, 4 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 11.5, 28.5 )
+
+[node name="fan_trap" type="StaticBody2D"]
+script = ExtResource( 2 )
+
+[node name="anim" type="AnimatedSprite2D" parent="."]
+frames = SubResource( 5 )
+animation = "turned_on"
+frame = -1
+playing = true
+
+[node name="collision" type="CollisionShape2D" parent="."]
+position = Vector2( -1, 0 )
+rotation = 3.14159
+shape = SubResource( 6 )
+
+[node name="wind" type="CPUParticles2D" parent="."]
+amount = 24
+lifetime = 1.65
+speed_scale = 2.25
+explosiveness = 0.06
+randomness = 0.41
+lifetime_randomness = 0.29
+emission_shape = 2
+emission_rect_extents = Vector2( 10, 5 )
+spread = 180.0
+gravity = Vector2( 0, -90 )
+scale_amount = 3.0
+scale_amount_random = 1.0
+
+[node name="blow_area" type="Area2D" parent="."]
+position = Vector2( -1, 0 )
+
+[node name="collision" type="CollisionShape2D" parent="blow_area"]
+position = Vector2( 0, -32.5 )
+shape = SubResource( 7 )

@@ -1,0 +1,10 @@
+[gd_scene format=2]
+
+[node name="aidkit" type="CharacterBody2D"]
+collision_layer = 4
+
+[node name="aidkit" type="Sprite2D" parent="."]
+
+[node name="collision" type="CollisionShape2D" parent="."]
+
+[node name="anim" type="AnimationPlayer" parent="."]
