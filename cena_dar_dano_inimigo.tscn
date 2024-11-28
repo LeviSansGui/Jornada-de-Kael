@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 16.5, 3.75 )
+
+[node name="dar_dano" type="Area2D"]
+collision_layer = 128
+
+[node name="colisao" type="CollisionShape2D" parent="."]
+position = Vector2( 1.5, -1.25 )
+shape = SubResource( 1 )
